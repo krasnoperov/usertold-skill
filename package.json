@@ -1,0 +1,14 @@
+{
+  "name": "usertold-skill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cross-agent UserTold skill and plugin distribution repository",
+  "license": "MIT-0",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

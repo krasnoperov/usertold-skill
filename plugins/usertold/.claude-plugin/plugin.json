@@ -1,0 +1,21 @@
+{
+  "name": "usertold",
+  "version": "0.1.0",
+  "description": "Run evidence-first product research and turn interviews into verified work.",
+  "author": {
+    "name": "UserTold",
+    "email": "support@usertold.ai"
+  },
+  "homepage": "https://usertold.ai/docs/mcp",
+  "repository": "https://github.com/krasnoperov/usertold-skill",
+  "license": "MIT-0",
+  "keywords": [
+    "user-research",
+    "customer-interviews",
+    "product-feedback",
+    "evidence",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}

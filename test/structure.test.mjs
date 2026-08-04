@@ -1,0 +1,43 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+import test from 'node:test';
+
+async function json(path) {
+  return JSON.parse(await readFile(path, 'utf8'));
+}
+
+test('shares one plugin identity and one MCP endpoint across registries', async () => {
+  const codex = await json('plugins/usertold/.codex-plugin/plugin.json');
+  const claude = await json('plugins/usertold/.claude-plugin/plugin.json');
+  const mcp = await json('plugins/usertold/.mcp.json');
+  const codexMarketplace = await json('.agents/plugins/marketplace.json');
+  const claudeMarketplace = await json('.claude-plugin/marketplace.json');
+
+  assert.equal(codex.name, 'usertold');
+  assert.equal(claude.name, codex.name);
+  assert.equal(claude.version, codex.version);
+  assert.equal(claude.repository, codex.repository);
+  assert.equal(mcp.mcpServers.usertold.url, 'https://mcp.usertold.ai/mcp');
+  assert.equal(codexMarketplace.name, 'usertold');
+  assert.equal(codexMarketplace.plugins[0].source.path, './plugins/usertold');
+  assert.equal(claudeMarketplace.name, 'usertold');
+  assert.equal(claudeMarketplace.plugins[0].source, './plugins/usertold');
+  assert.equal(claudeMarketplace.plugins[0].version, codex.version);
+});
+
+test('skill metadata is portable and contains no scaffold placeholders', async () => {
+  const skill = await readFile('plugins/usertold/skills/usertold/SKILL.md', 'utf8');
+  const repoFiles = await Promise.all([
+    readFile('README.md', 'utf8'),
+    readFile('plugins/usertold/skills/usertold/references/access.md', 'utf8'),
+    readFile('plugins/usertold/skills/usertold/references/handoff.md', 'utf8'),
+  ]);
+
+  const frontmatter = skill.match(/^---\n([\s\S]*?)\n---/);
+  assert.ok(frontmatter);
+  const keys = frontmatter[1].split('\n').filter((line) => /^[a-zA-Z]/.test(line)).map((line) => line.split(':')[0]);
+  assert.deepEqual(keys, ['name', 'description']);
+  assert.match(skill, /Prefer the configured UserTold MCP server/);
+  assert.match(skill, /portable research handoff/);
+  assert.doesNotMatch([skill, ...repoFiles].join('\n'), /\[TODO:/);
+});

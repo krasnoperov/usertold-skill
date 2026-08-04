@@ -1,0 +1,30 @@
+{
+  "name": "usertold",
+  "owner": {
+    "name": "UserTold",
+    "email": "support@usertold.ai"
+  },
+  "description": "Official UserTold skills and plugins for evidence-first product research.",
+  "plugins": [
+    {
+      "name": "usertold",
+      "source": "./plugins/usertold",
+      "description": "Run evidence-first product research and turn interviews into verified work.",
+      "version": "0.1.0",
+      "author": {
+        "name": "UserTold",
+        "email": "support@usertold.ai"
+      },
+      "homepage": "https://usertold.ai/docs/mcp",
+      "repository": "https://github.com/krasnoperov/usertold-skill",
+      "license": "MIT-0",
+      "category": "Productivity",
+      "tags": [
+        "user-research",
+        "customer-interviews",
+        "product-feedback",
+        "mcp"
+      ]
+    }
+  ]
+}

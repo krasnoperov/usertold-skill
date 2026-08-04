@@ -1,0 +1,42 @@
+{
+  "name": "usertold",
+  "version": "0.1.0",
+  "description": "Run evidence-first product research and turn interviews into verified work.",
+  "author": {
+    "name": "UserTold",
+    "email": "support@usertold.ai",
+    "url": "https://usertold.ai"
+  },
+  "homepage": "https://usertold.ai/docs/mcp",
+  "repository": "https://github.com/krasnoperov/usertold-skill",
+  "license": "MIT-0",
+  "keywords": [
+    "user-research",
+    "customer-interviews",
+    "product-feedback",
+    "evidence",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "UserTold",
+    "shortDescription": "Turn interviews into evidence-backed work.",
+    "longDescription": "Run in-product research, inspect source-linked interview evidence, prepare verified product work, and export portable handoffs for adjacent research workflows.",
+    "developerName": "UserTold",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://usertold.ai",
+    "privacyPolicyURL": "https://usertold.ai/privacy",
+    "termsOfServiceURL": "https://usertold.ai/terms",
+    "defaultPrompt": [
+      "Review my latest interviews and summarize evidence-backed findings.",
+      "Turn selected UserTold evidence into a portable research handoff.",
+      "Draft a study for this product and show it before activation."
+    ]
+  }
+}

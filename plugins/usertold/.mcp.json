@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "usertold": {
+      "type": "http",
+      "url": "https://mcp.usertold.ai/mcp"
+    }
+  }
+}

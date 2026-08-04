@@ -1,0 +1,20 @@
+{
+  "name": "usertold",
+  "interface": {
+    "displayName": "UserTold"
+  },
+  "plugins": [
+    {
+      "name": "usertold",
+      "source": {
+        "source": "local",
+        "path": "./plugins/usertold"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
