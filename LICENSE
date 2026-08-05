@@ -1,3 +1,15 @@
+UserTold Agent Skill Distribution License
+
+This license applies only to the files published from this repository as the
+UserTold Agent Skill and its Codex and Claude Code packaging. It does not apply
+to the UserTold hosted service, private application source code, the published
+UserTold CLI implementation, customer data, models, APIs, trademarks, or brand
+assets. Those remain subject to their own terms.
+
+The Agent Skill files are distributed under the MIT No Attribution license
+(MIT-0), reproduced below. ClawHub also distributes published skill versions
+under MIT-0.
+
 MIT No Attribution
 
 Copyright 2026 UserTold

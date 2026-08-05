@@ -16,6 +16,7 @@ test('shares one plugin identity and one MCP endpoint across registries', async 
   assert.equal(codex.name, 'usertold');
   assert.equal(claude.name, codex.name);
   assert.equal(claude.version, codex.version);
+  assert.equal(codex.version, (await json('package.json')).version);
   assert.equal(claude.repository, codex.repository);
   assert.equal(mcp.mcpServers.usertold.url, 'https://mcp.usertold.ai/mcp');
   assert.equal(codexMarketplace.name, 'usertold');
@@ -38,6 +39,21 @@ test('skill metadata is portable and contains no scaffold placeholders', async (
   const keys = frontmatter[1].split('\n').filter((line) => /^[a-zA-Z]/.test(line)).map((line) => line.split(':')[0]);
   assert.deepEqual(keys, ['name', 'description']);
   assert.match(skill, /Prefer the configured UserTold MCP server/);
+  assert.match(skill, /capture interviews with real users/i);
+  assert.match(skill, /Screen capture is not available on every browser or mobile device/);
   assert.match(skill, /portable research handoff/);
   assert.doesNotMatch([skill, ...repoFiles].join('\n'), /\[TODO:/);
+});
+
+test('license is scoped to the public skill distribution', async () => {
+  const license = await readFile('LICENSE', 'utf8');
+  const npmPackage = await json('package.json');
+  const codex = await json('plugins/usertold/.codex-plugin/plugin.json');
+  const claude = await json('plugins/usertold/.claude-plugin/plugin.json');
+
+  assert.equal(npmPackage.license, 'MIT-0');
+  assert.equal(codex.license, 'MIT-0');
+  assert.equal(claude.license, 'MIT-0');
+  assert.match(license, /applies only to the files published from this repository/);
+  assert.match(license, /does not apply[\s\S]*UserTold CLI implementation/);
 });

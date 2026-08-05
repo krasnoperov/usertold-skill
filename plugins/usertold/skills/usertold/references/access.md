@@ -2,6 +2,15 @@
 
 Use live discovery as the source of truth. The names below describe stable workflow families, not a frozen complete catalog.
 
+## What UserTold captures and returns
+
+- With participant consent and microphone permission: interview voice and transcript.
+- From the embedded product experience: in-page actions, navigation, and page context.
+- On supported desktop browsers, when the participant approves screen sharing: a screen recording linked to the interview timeline.
+- After processing: source-linked Evidence, analysis context, and reviewable Work tied back to interview records.
+
+UserTold does not recruit participants. Mobile and unsupported environments continue without screen video, using audio and in-page events. Permissions, connectivity, navigation, or interruption can create capture gaps; surface those gaps whenever interpreting results.
+
 ## MCP
 
 Connect to:
@@ -39,6 +48,13 @@ Install and authenticate only with user approval:
 npm install -g usertold
 usertold auth login
 usertold auth whoami --json
+```
+
+To inspect the current published npm package without installing it globally:
+
+```bash
+npx --yes usertold@latest --version
+npx --yes usertold@latest --help --json
 ```
 
 Discover the active command contract:

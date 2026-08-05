@@ -4,13 +4,13 @@
     "name": "UserTold",
     "email": "support@usertold.ai"
   },
-  "description": "Official UserTold skills and plugins for evidence-first product research.",
+  "description": "Official UserTold skill for captured interviews and source-linked product research.",
   "plugins": [
     {
       "name": "usertold",
       "source": "./plugins/usertold",
-      "description": "Run evidence-first product research and turn interviews into verified work.",
-      "version": "0.1.0",
+      "description": "Capture in-product interviews and return source-linked evidence for verified product work.",
+      "version": "0.2.0",
       "author": {
         "name": "UserTold",
         "email": "support@usertold.ai"
