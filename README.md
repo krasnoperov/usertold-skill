@@ -30,15 +30,17 @@ Run `/reload-plugins`, then invoke `/usertold:usertold` or describe the research
 
 ### ClawHub
 
-The publishable skill is [`plugins/usertold/skills/usertold`](./plugins/usertold/skills/usertold). Until the `usertold` listing is approved on ClawHub, clone this repository and install that directory using your OpenClaw skill workflow.
+Install the published [`@usertold/usertold`](https://clawhub.ai/usertold/skills/usertold) skill:
 
-Publisher command:
 
 ```bash
-clawhub skill publish ./plugins/usertold/skills/usertold \
-  --slug usertold \
-  --name "UserTold" \
-  --version 0.1.0
+openclaw skills install @usertold/usertold
+```
+
+Or install it directly with the ClawHub CLI:
+
+```bash
+npx --yes clawhub@latest install @usertold/usertold
 ```
 
 ## What it does
