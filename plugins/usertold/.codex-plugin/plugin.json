@@ -1,7 +1,7 @@
 {
   "name": "usertold",
-  "version": "0.1.0",
-  "description": "Run evidence-first product research and turn interviews into verified work.",
+  "version": "0.2.0",
+  "description": "Capture in-product interviews and return source-linked evidence for verified product work.",
   "author": {
     "name": "UserTold",
     "email": "support@usertold.ai",
@@ -21,8 +21,8 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "UserTold",
-    "shortDescription": "Turn interviews into evidence-backed work.",
-    "longDescription": "Run in-product research, inspect source-linked interview evidence, prepare verified product work, and export portable handoffs for adjacent research workflows.",
+    "shortDescription": "Capture interviews and return source-linked evidence.",
+    "longDescription": "Capture consented voice, supported desktop screen, and in-product behavior; inspect the recordings and source-linked analysis; prepare verified work; and export portable research handoffs.",
     "developerName": "UserTold",
     "category": "Productivity",
     "capabilities": [
@@ -34,7 +34,7 @@
     "privacyPolicyURL": "https://usertold.ai/privacy",
     "termsOfServiceURL": "https://usertold.ai/terms",
     "defaultPrompt": [
-      "Review my latest interviews and summarize evidence-backed findings.",
+      "Review my latest captured interviews and cite the source evidence.",
       "Turn selected UserTold evidence into a portable research handoff.",
       "Draft a study for this product and show it before activation."
     ]

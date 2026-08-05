@@ -1,6 +1,6 @@
 # UserTold Agent Skill
 
-The official cross-agent skill and plugin package for [UserTold](https://usertold.ai): evidence-first product research from in-product interviews to verified delivery work.
+The official cross-agent skill for [UserTold](https://usertold.ai). UserTold captures consented interviews with real users inside the product: voice and transcript, in-page behavior and page context, plus a participant-approved screen share on supported desktop browsers. It returns the recording and source-linked analysis for a human or agent to verify and act on.
 
 One portable Agent Skill is packaged for Codex, Claude Code, and ClawHub. Both plugin variants connect to the same production UserTold MCP server through OAuth; no credentials or backend implementation are duplicated in this repository.
 
@@ -43,8 +43,20 @@ Or install it directly with the ClawHub CLI:
 npx --yes clawhub@latest install @usertold/usertold
 ```
 
+### npm CLI
+
+The published [`usertold`](https://www.npmjs.com/package/usertold) CLI is the skill's fallback when MCP is unavailable. It operates the same UserTold account and research model; it is not a second backend.
+
+```bash
+npm install -g usertold
+usertold auth login
+usertold --help --json
+```
+
 ## What it does
 
+- sets up interview capture for users you can already reach;
+- returns consented voice, transcripts, observed actions, page context, and supported desktop screen recordings;
 - inspects UserTold projects, studies, interviews, Evidence, and Work;
 - helps draft research setup while keeping activation behind explicit approval;
 - reviews transcripts and behavior without mixing quotes, observations, interpretations, and decisions;
@@ -53,6 +65,13 @@ npx --yes clawhub@latest install @usertold/usertold
 - creates portable Markdown and JSON handoffs for adjacent UX research, Voice-of-Customer, insight-tracking, market-research, and roadmap skills.
 
 The preferred access path is the OAuth-enabled remote MCP server at `https://mcp.usertold.ai/mcp`. The published `usertold` CLI is the fallback when MCP is unavailable.
+
+## Capture limitations
+
+- UserTold does not recruit participants; you need an existing product and reachable users.
+- Screen capture requires browser support and participant approval. On mobile or unsupported devices, interviews continue with audio and in-page events only.
+- Permissions, navigation, connectivity, or an interrupted browser session can leave capture gaps. Treat those gaps as limitations in the evidence, not as proof that an action did not happen.
+- Extracted Evidence and Work are source-linked analysis, not automatically correct conclusions or implementation orders.
 
 ## Portable research handoff
 
@@ -106,5 +125,9 @@ The deterministic tests verify the shared skill, both plugin manifests, both mar
 - Raw participant material is optional in a handoff and should be minimized.
 - Study activation, destructive actions, and external delivery handoffs require explicit approval.
 - UserTold Work is a review packet, not an automatic implementation order.
+
+## License boundary
+
+ClawHub distributes Agent Skills under MIT-0, so the public skill files and their packaging use MIT-0. This license applies only to this distribution repository. It does not make the UserTold hosted product or the published `usertold` CLI implementation open source; those remain governed by UserTold's Terms.
 
 Privacy: [usertold.ai/privacy](https://usertold.ai/privacy) · Terms: [usertold.ai/terms](https://usertold.ai/terms) · Security: [usertold.ai/security](https://usertold.ai/security) · Support: support@usertold.ai

@@ -1,11 +1,15 @@
 ---
 name: usertold
-description: Run evidence-first product research with UserTold through its MCP server or CLI. Use when an agent needs to set up or review in-product interviews, inspect transcripts and behavioral evidence, prepare verified product work, or export raw and processed UserTold research into a portable handoff for UX research, Voice of Customer, insight-tracking, or roadmap workflows. Do not use for participant recruitment or for unsupported claims that are not grounded in source evidence.
+description: Capture consented in-product interviews and use their source-linked evidence through UserTold MCP or CLI. Use when an agent needs to set up interview capture, inspect voice transcripts, supported desktop screen recordings, observed behavior or page context, review UserTold analysis, prepare verified product work, or export raw and processed research into a portable handoff for UX research, Voice of Customer, insight-tracking, prioritization, issue-writing, or implementation workflows. Do not use for participant recruitment or for claims not grounded in the captured record.
 ---
 
 # UserTold
 
-Use UserTold to connect product decisions to what participants actually said and did. Preserve the boundary between source material, observed facts, generated interpretation, and delivery decisions.
+Use UserTold to capture interviews with real users inside the product and connect decisions to what they actually said and did. The captured record can include consented voice and transcript, in-page actions and page context, and a participant-approved screen share on supported desktop browsers. UserTold returns the recording plus source-linked Evidence and Work for a human or agent to inspect.
+
+UserTold does not recruit participants. Screen capture is not available on every browser or mobile device; those interviews continue with audio and in-page events. Treat permission failures, interrupted sessions, connectivity problems, weak sample coverage, and other capture gaps as explicit evidence limitations.
+
+Preserve the boundary between source material, observed facts, generated interpretation, and delivery decisions.
 
 ## Choose the access path
 

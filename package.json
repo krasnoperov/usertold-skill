@@ -1,8 +1,8 @@
 {
   "name": "usertold-skill",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Cross-agent UserTold skill and plugin distribution repository",
+  "description": "Portable UserTold skill for capturing interviews and using source-linked research evidence",
   "license": "MIT-0",
   "type": "module",
   "scripts": {
