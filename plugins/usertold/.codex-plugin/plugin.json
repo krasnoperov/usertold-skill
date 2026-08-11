@@ -34,6 +34,8 @@
     "privacyPolicyURL": "https://usertold.ai/privacy",
     "termsOfServiceURL": "https://usertold.ai/terms",
     "supportURL": "https://usertold.ai/support",
+    "composerIcon": "./assets/usertold-mark.svg",
+    "logo": "./assets/usertold-mark.svg",
     "defaultPrompt": [
       "Review my latest captured interviews and cite the source evidence.",
       "Turn selected UserTold evidence into a portable research handoff.",

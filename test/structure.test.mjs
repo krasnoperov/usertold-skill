@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, stat } from 'node:fs/promises';
+import { extname, resolve, sep } from 'node:path';
 import test from 'node:test';
 
 async function json(path) {
@@ -120,5 +121,42 @@ test('OpenAI directory metadata meets the final publication limits', async () =>
   for (const capability of pluginInterface.capabilities) {
     assert.match(capability, /\s/);
     assert.doesNotMatch(capability, /^(interactive|read|write)$/i);
+  }
+});
+
+test('OpenAI directory branding uses a valid square UserTold asset', async () => {
+  const codex = await json('plugins/usertold/.codex-plugin/plugin.json');
+  const pluginRoot = resolve('plugins/usertold');
+  const { composerIcon, logo } = codex.interface;
+
+  assert.equal(composerIcon, './assets/usertold-mark.svg');
+  assert.equal(logo, composerIcon);
+
+  for (const assetPath of new Set([composerIcon, logo])) {
+    assert.ok(assetPath.startsWith('./assets/'));
+    assert.ok(['.png', '.jpg', '.jpeg', '.webp', '.svg'].includes(extname(assetPath).toLowerCase()));
+
+    const absolutePath = resolve(pluginRoot, assetPath);
+    assert.ok(absolutePath.startsWith(`${pluginRoot}${sep}`));
+
+    const assetStat = await stat(absolutePath);
+    assert.ok(assetStat.isFile());
+    assert.ok(assetStat.size > 0);
+    assert.ok(assetStat.size <= 5 * 1024 * 1024);
+
+    const source = await readFile(absolutePath, 'utf8');
+    const svgRoot = source.match(/^\s*<svg\b([^>]*)>/);
+    assert.ok(svgRoot);
+
+    const viewBox = svgRoot[1].match(/\bviewBox="([^"]+)"/);
+    assert.ok(viewBox);
+    const dimensions = viewBox[1].trim().split(/\s+/).map(Number);
+    assert.equal(dimensions.length, 4);
+    assert.ok(dimensions.every(Number.isFinite));
+
+    const [, , width, height] = dimensions;
+    assert.equal(width, height);
+    assert.ok(width >= 48);
+    assert.ok(width <= 4096);
   }
 });
