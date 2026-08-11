@@ -21,18 +21,21 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "UserTold",
-    "shortDescription": "Capture interviews and return source-linked evidence.",
+    "shortDescription": "Capture and analyze interviews",
     "longDescription": "Capture consented voice, supported desktop screen, and in-product behavior; inspect the recordings and source-linked analysis; prepare verified work; and export portable research handoffs.",
     "developerName": "UserTold",
-    "category": "Productivity",
+    "category": "Data & Analytics",
     "capabilities": [
-      "Interactive",
-      "Read",
-      "Write"
+      "Set up interview capture",
+      "Review source-linked evidence",
+      "Prepare verified product work"
     ],
     "websiteURL": "https://usertold.ai",
     "privacyPolicyURL": "https://usertold.ai/privacy",
     "termsOfServiceURL": "https://usertold.ai/terms",
+    "supportURL": "https://usertold.ai/support",
+    "composerIcon": "./assets/usertold-mark.svg",
+    "logo": "./assets/usertold-mark.svg",
     "defaultPrompt": [
       "Review my latest captured interviews and cite the source evidence.",
       "Turn selected UserTold evidence into a portable research handoff.",

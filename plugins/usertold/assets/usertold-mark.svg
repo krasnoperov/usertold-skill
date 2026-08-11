@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="UserTold.ai">
+  <style>
+    :root { color-scheme: light dark; --ink: oklch(20% 0 0); --accent: oklch(56% 0.142 39); }
+    @media (prefers-color-scheme: dark) {
+      :root { --ink: oklch(94% 0.012 80); --accent: oklch(70% 0.140 42); }
+    }
+  </style>
+  <g fill="var(--ink)" stroke="var(--ink)" opacity="0.62"><path d="M42 32V45H23" fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="45" r="8" stroke="none"/></g><circle cx="42" cy="21" r="11" fill="var(--accent)"/>
+</svg>
