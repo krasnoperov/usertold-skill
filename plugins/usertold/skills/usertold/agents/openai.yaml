@@ -1,6 +1,6 @@
 interface:
   display_name: "UserTold"
-  short_description: "Capture interviews and return source-linked evidence"
+  short_description: "Capture and analyze interviews"
   default_prompt: "Use $usertold to capture or review in-product interviews and prepare a source-linked research handoff."
 
 dependencies:

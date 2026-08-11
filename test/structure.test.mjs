@@ -6,6 +6,12 @@ async function json(path) {
   return JSON.parse(await readFile(path, 'utf8'));
 }
 
+function quotedYamlScalar(source, key) {
+  const match = source.match(new RegExp(`^\\s*${key}:\\s*"([^"]*)"\\s*$`, 'm'));
+  assert.ok(match, `expected quoted YAML scalar: ${key}`);
+  return match[1];
+}
+
 test('shares one plugin identity and one MCP endpoint across registries', async () => {
   const codex = await json('plugins/usertold/.codex-plugin/plugin.json');
   const claude = await json('plugins/usertold/.claude-plugin/plugin.json');
@@ -56,4 +62,63 @@ test('license is scoped to the public skill distribution', async () => {
   assert.equal(claude.license, 'MIT-0');
   assert.match(license, /applies only to the files published from this repository/);
   assert.match(license, /does not apply[\s\S]*UserTold CLI implementation/);
+});
+
+test('OpenAI directory metadata meets the final publication limits', async () => {
+  const codex = await json('plugins/usertold/.codex-plugin/plugin.json');
+  const codexMarketplace = await json('.agents/plugins/marketplace.json');
+  const claudeMarketplace = await json('.claude-plugin/marketplace.json');
+  const openaiAgent = await readFile('plugins/usertold/skills/usertold/agents/openai.yaml', 'utf8');
+  const npmPackage = await json('package.json');
+
+  assert.equal(npmPackage.version, '0.2.0');
+  assert.equal(codex.version, npmPackage.version);
+
+  const { interface: pluginInterface } = codex;
+  const displayName = quotedYamlScalar(openaiAgent, 'display_name');
+  const shortDescription = quotedYamlScalar(openaiAgent, 'short_description');
+
+  assert.equal(displayName, pluginInterface.displayName);
+  assert.equal(shortDescription, pluginInterface.shortDescription);
+  assert.ok(pluginInterface.displayName.length <= 30);
+  assert.ok(pluginInterface.shortDescription.length <= 30);
+  assert.ok(displayName.length <= 30);
+  assert.ok(shortDescription.length <= 30);
+
+  const expectedPrompts = [
+    'Review my latest captured interviews and cite the source evidence.',
+    'Turn selected UserTold evidence into a portable research handoff.',
+    'Draft a study for this product and show it before activation.',
+  ];
+  assert.deepEqual(pluginInterface.defaultPrompt, expectedPrompts);
+  assert.ok(pluginInterface.defaultPrompt.length <= 3);
+  assert.equal(
+    new Set(pluginInterface.defaultPrompt.map((prompt) => prompt.trim().toLocaleLowerCase())).size,
+    pluginInterface.defaultPrompt.length,
+  );
+  for (const prompt of pluginInterface.defaultPrompt) {
+    assert.equal(prompt, prompt.trim());
+    assert.ok(prompt.length <= 128);
+    assert.doesNotMatch(prompt, /[\r\n]/);
+    assert.doesNotMatch(prompt, /@/);
+  }
+
+  for (const key of ['websiteURL', 'privacyPolicyURL', 'termsOfServiceURL', 'supportURL']) {
+    assert.equal(new URL(pluginInterface[key]).protocol, 'https:');
+  }
+
+  assert.equal(pluginInterface.category, 'Data & Analytics');
+  assert.equal(codexMarketplace.plugins[0].category, pluginInterface.category);
+  assert.equal(claudeMarketplace.plugins[0].category, pluginInterface.category);
+
+  const capabilities = [
+    'Set up interview capture',
+    'Review source-linked evidence',
+    'Prepare verified product work',
+  ];
+  assert.deepEqual(pluginInterface.capabilities, capabilities);
+  for (const capability of pluginInterface.capabilities) {
+    assert.match(capability, /\s/);
+    assert.doesNotMatch(capability, /^(interactive|read|write)$/i);
+  }
 });
