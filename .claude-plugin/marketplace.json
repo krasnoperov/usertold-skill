@@ -10,7 +10,7 @@
       "name": "usertold",
       "source": "./plugins/usertold",
       "description": "Capture in-product interviews and return source-linked evidence for verified product work.",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "author": {
         "name": "UserTold",
         "email": "support@usertold.ai"

@@ -7,7 +7,7 @@ description: Capture consented in-product interviews and use their source-linked
 
 Use UserTold to capture interviews with real users inside the product and connect decisions to what they actually said and did. The captured record can include consented voice and transcript, in-page actions and page context, and a participant-approved screen share on supported desktop browsers. UserTold returns the recording plus source-linked Evidence and Work for a human or agent to inspect.
 
-UserTold does not recruit participants. Screen capture is not available on every browser or mobile device; those interviews continue with audio and in-page events. Treat permission failures, interrupted sessions, connectivity problems, weak sample coverage, and other capture gaps as explicit evidence limitations.
+This skill does not recruit participants. Use the sibling `$usertold-recruit-participants` skill to plan outreach and produce canonical Invitation, Visibility, and Intake inputs; it does not source a panel or send outreach. Screen capture is not available on every browser or mobile device; those interviews continue with audio and in-page events. Treat permission failures, interrupted sessions, connectivity problems, weak sample coverage, and other capture gaps as explicit evidence limitations.
 
 Preserve the boundary between source material, observed facts, generated interpretation, and delivery decisions.
 

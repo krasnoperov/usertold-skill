@@ -1,6 +1,6 @@
 {
   "name": "usertold",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Capture in-product interviews and return source-linked evidence for verified product work.",
   "author": {
     "name": "UserTold",
@@ -22,10 +22,11 @@
   "interface": {
     "displayName": "UserTold",
     "shortDescription": "Capture and analyze interviews",
-    "longDescription": "Capture consented voice, supported desktop screen, and in-product behavior; inspect the recordings and source-linked analysis; prepare verified work; and export portable research handoffs.",
+    "longDescription": "Plan truthful participant recruitment; capture consented voice, supported desktop screen, and in-product behavior; inspect source-linked analysis; prepare verified work; and export portable research handoffs.",
     "developerName": "UserTold",
     "category": "Data & Analytics",
     "capabilities": [
+      "Plan participant recruitment",
       "Set up interview capture",
       "Review source-linked evidence",
       "Prepare verified product work"
@@ -39,7 +40,7 @@
     "defaultPrompt": [
       "Review my latest captured interviews and cite the source evidence.",
       "Turn selected UserTold evidence into a portable research handoff.",
-      "Draft a study for this product and show it before activation."
+      "Plan participant recruitment and draft canonical UserTold Study inputs."
     ]
   }
 }
