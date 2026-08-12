@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFile, stat } from 'node:fs/promises';
+import { readdir, readFile, stat } from 'node:fs/promises';
 import { extname, resolve, sep } from 'node:path';
 import test from 'node:test';
 
@@ -52,6 +52,48 @@ test('skill metadata is portable and contains no scaffold placeholders', async (
   assert.doesNotMatch([skill, ...repoFiles].join('\n'), /\[TODO:/);
 });
 
+test('recruitment sibling is concise, canonical, and contains only approved files', async () => {
+  const root = 'plugins/usertold/skills/usertold-recruit-participants';
+  const skill = await readFile(`${root}/SKILL.md`, 'utf8');
+  const openai = await readFile(`${root}/agents/openai.yaml`, 'utf8');
+  const references = await readdir(`${root}/references`);
+  assert.deepEqual((await readdir(root)).sort(), ['SKILL.md', 'agents', 'references']);
+  assert.deepEqual(await readdir(`${root}/agents`), ['openai.yaml']);
+  const files = [
+    'SKILL.md',
+    'agents/openai.yaml',
+    ...references.map((name) => `references/${name}`),
+  ].sort();
+
+  assert.deepEqual(files, [
+    'SKILL.md',
+    'agents/openai.yaml',
+    'references/channel-selection.md',
+    'references/invitation-examples.md',
+    'references/rewards.md',
+  ]);
+  const frontmatter = skill.match(/^---\n([\s\S]*?)\n---/);
+  assert.ok(frontmatter);
+  const keys = frontmatter[1].split('\n').filter((line) => /^[a-zA-Z]/.test(line)).map((line) => line.split(':')[0]);
+  assert.deepEqual(keys, ['name', 'description']);
+  assert.match(skill, /name: usertold-recruit-participants/);
+  assert.match(skill, /special URL[\s\S]*expanded Invitation[\s\S]*Start/);
+  assert.match(skill, /A link is never consent/);
+  assert.match(skill, /studies\.create/);
+  assert.doesNotMatch(skill, /intake\.create/);
+  assert.match(skill, /Do not emit an invented combined `intake` schema/);
+  assert.match(skill, /Visibility does not encode dates or display frequency/);
+  assert.match(skill, /ordinary Intake question writes UserTold's response-level `consent_followup`/);
+  assert.match(openai, /default_prompt: "Use \$usertold-recruit-participants/);
+
+  const contents = await Promise.all(files.map((path) => readFile(`${root}/${path}`, 'utf8')));
+  const joined = contents.join('\n');
+  assert.match(joined, /\$80\/hour[\s\S]*human-moderated consumer interview/);
+  assert.match(joined, /20 minutes · \$25 gift card/);
+  assert.match(joined, /utm_source/);
+  assert.doesNotMatch(joined, /\[TODO:|payment fulfillment|representative sample|participant panel manager/i);
+});
+
 test('license is scoped to the public skill distribution', async () => {
   const license = await readFile('LICENSE', 'utf8');
   const npmPackage = await json('package.json');
@@ -72,7 +114,7 @@ test('OpenAI directory metadata meets the final publication limits', async () =>
   const openaiAgent = await readFile('plugins/usertold/skills/usertold/agents/openai.yaml', 'utf8');
   const npmPackage = await json('package.json');
 
-  assert.equal(npmPackage.version, '0.2.0');
+  assert.equal(npmPackage.version, '0.3.0');
   assert.equal(codex.version, npmPackage.version);
 
   const { interface: pluginInterface } = codex;
@@ -89,7 +131,7 @@ test('OpenAI directory metadata meets the final publication limits', async () =>
   const expectedPrompts = [
     'Review my latest captured interviews and cite the source evidence.',
     'Turn selected UserTold evidence into a portable research handoff.',
-    'Draft a study for this product and show it before activation.',
+    'Plan participant recruitment and draft canonical UserTold Study inputs.',
   ];
   assert.deepEqual(pluginInterface.defaultPrompt, expectedPrompts);
   assert.ok(pluginInterface.defaultPrompt.length <= 3);
@@ -113,6 +155,7 @@ test('OpenAI directory metadata meets the final publication limits', async () =>
   assert.equal(claudeMarketplace.plugins[0].category, pluginInterface.category);
 
   const capabilities = [
+    'Plan participant recruitment',
     'Set up interview capture',
     'Review source-linked evidence',
     'Prepare verified product work',

@@ -2,7 +2,7 @@
 
 The official cross-agent skill for [UserTold](https://usertold.ai). UserTold captures consented interviews with real users inside the product: voice and transcript, in-page behavior and page context, plus a participant-approved screen share on supported desktop browsers. It returns the recording and source-linked analysis for a human or agent to verify and act on.
 
-One portable Agent Skill is packaged for Codex, Claude Code, and ClawHub. Both plugin variants connect to the same production UserTold MCP server through OAuth; no credentials or backend implementation are duplicated in this repository.
+Two concise sibling Agent Skills are packaged for Codex, Claude Code, and ClawHub: `usertold` for captured research and `usertold-recruit-participants` for recruitment planning and canonical Study inputs. Both plugin variants connect to the same production UserTold MCP server through OAuth; no credentials or backend implementation are duplicated in this repository.
 
 ## Install
 
@@ -17,6 +17,12 @@ Start a new Codex session, then ask:
 
 ```text
 Use $usertold to review my latest interviews and prepare an evidence-backed research handoff.
+```
+
+For recruitment planning, ask:
+
+```text
+Use $usertold-recruit-participants to plan outreach and draft UserTold Invitation, Visibility, and Intake inputs.
 ```
 
 ### Claude Code
@@ -43,6 +49,12 @@ Or install it directly with the ClawHub CLI:
 npx --yes clawhub@latest install @usertold/usertold
 ```
 
+The recruitment sibling is published separately as [`@usertold/usertold-recruit-participants`](https://clawhub.ai/usertold/skills/usertold-recruit-participants):
+
+```bash
+npx --yes clawhub@latest install @usertold/usertold-recruit-participants
+```
+
 ### npm CLI
 
 The published [`usertold`](https://www.npmjs.com/package/usertold) CLI is the skill's fallback when MCP is unavailable. It operates the same UserTold account and research model; it is not a second backend.
@@ -63,12 +75,13 @@ usertold --help --json
 - prepares evidence-backed Work for project-aware verification;
 - routes only verified, ready Work to Linear or GitHub after approval;
 - creates portable Markdown and JSON handoffs for adjacent UX research, Voice-of-Customer, insight-tracking, market-research, and roadmap skills.
+- plans participant definitions, channel tradeoffs, honest rewards, neutral Intake questions, and canonical Invitation/Visibility inputs without sourcing a panel or sending outreach.
 
 The preferred access path is the OAuth-enabled remote MCP server at `https://mcp.usertold.ai/mcp`. The published `usertold` CLI is the fallback when MCP is unavailable.
 
 ## Capture limitations
 
-- UserTold does not recruit participants; you need an existing product and reachable users.
+- UserTold does not supply participants; the recruitment sibling helps plan distribution to people you can already reach.
 - Screen capture requires browser support and participant approval. On mobile or unsupported devices, interviews continue with audio and in-page events only.
 - Permissions, navigation, connectivity, or an interrupted browser session can leave capture gaps. Treat those gaps as limitations in the evidence, not as proof that an action did not happen.
 - Extracted Evidence and Work are source-linked analysis, not automatically correct conclusions or implementation orders.
@@ -101,11 +114,16 @@ Research bundles can contain participant or company-sensitive information. Revie
     ├── .codex-plugin/plugin.json
     ├── .claude-plugin/plugin.json
     ├── .mcp.json
-    └── skills/usertold/
-        ├── SKILL.md
-        ├── agents/openai.yaml
-        ├── references/
-        └── scripts/
+    └── skills/
+        ├── usertold/
+        │   ├── SKILL.md
+        │   ├── agents/openai.yaml
+        │   ├── references/
+        │   └── scripts/
+        └── usertold-recruit-participants/
+            ├── SKILL.md
+            ├── agents/openai.yaml
+            └── references/
 ```
 
 ## Validate
