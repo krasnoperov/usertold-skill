@@ -120,7 +120,7 @@ test('OpenAI directory metadata meets the final publication limits', async () =>
   const openaiAgent = await readFile('plugins/usertold/skills/usertold/agents/openai.yaml', 'utf8');
   const npmPackage = await json('package.json');
 
-  assert.equal(npmPackage.version, '0.3.1');
+  assert.equal(npmPackage.version, '0.3.2');
   assert.equal(codex.version, npmPackage.version);
 
   const { interface: pluginInterface } = codex;
@@ -135,9 +135,9 @@ test('OpenAI directory metadata meets the final publication limits', async () =>
   assert.ok(shortDescription.length <= 30);
 
   const expectedPrompts = [
-    "Read README and PRD only, create this repo's UserTold project, and propose draft studies for new and experienced users.",
-    'Create and activate two studies: new homepage visitors and experienced users working in a Space. Install the widget.',
-    'Review interviews and source evidence, triage proposed fixes, and create issues only for fixes I approve.',
+    'Learn this product, create its UserTold project, and propose studies for new and experienced users.',
+    'Create and activate studies for new visitors and experienced users, then install UserTold on the right pages.',
+    'Review interviews and source evidence, triage fixes, and create issues only for fixes I approve.',
   ];
   assert.deepEqual(pluginInterface.defaultPrompt, expectedPrompts);
   assert.ok(pluginInterface.defaultPrompt.length <= 3);

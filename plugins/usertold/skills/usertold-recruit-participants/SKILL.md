@@ -9,7 +9,7 @@ Turn a research question into a small, truthful recruitment plan for people the 
 
 ## Scale to the request
 
-For a short in-product setup request, do not automatically expand into a full outreach campaign, reward plan, or Intake. If the user already names the audiences and product routes, preserve those boundaries and produce only the Invitation, Visibility, and safeguards needed to create the Studies. Inspect the host application only when an exact route is required for installation. Ask only for information that blocks a truthful configuration.
+For a short in-product setup request, do not automatically expand into a full outreach campaign, reward plan, or Intake. If the user names audiences and routes, preserve those boundaries. If they name audiences but not routes, derive the public entry surface and primary authenticated workflow from the smallest authoritative product context, then state the coverage limitation. Produce only the Invitation, Visibility, and safeguards needed to create the Studies. Inspect the host application only when an exact route is required for installation. Ask only for information that blocks a truthful configuration.
 
 Use the full recruitment packet below when the user asks how to reach, qualify, reward, or invite participants beyond the in-product placement.
 

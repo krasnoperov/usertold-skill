@@ -34,11 +34,12 @@ Treat a short request as the desired outcome, not permission to inspect everythi
 ### Configure and install Studies
 
 1. Use `$usertold-recruit-participants` when the request names audiences, invitations, placement, or outreach.
-2. Inspect existing Studies before creating anything. Reuse or update an intended draft instead of duplicating it.
-3. Define one research question and audience per Study, validate every script, then create the Studies as drafts.
-4. Activate only when the user explicitly asks for activation or approves the shown configuration.
-5. Retrieve the install-once snippet from `projects.get_widget_setup`. Use Study Visibility for route targeting; do not install one script per Study.
-6. If repository installation is requested, inspect only the route and application-shell files needed for the integration, make the smallest change, and verify the widget on the intended desktop and mobile routes.
+2. If the user names audiences but not routes, derive the smallest truthful placement from product documentation and routing: the public entry surface for new visitors and the primary authenticated workflow for experienced users. State any coverage limitation instead of inventing tenure or identity signals.
+3. Inspect existing Studies before creating anything. Reuse or update an intended draft instead of duplicating it.
+4. Define one research question and audience per Study, validate every script, then create the Studies as drafts.
+5. Activate only when the user explicitly asks for activation or approves the shown configuration.
+6. Retrieve the install-once snippet from `projects.get_widget_setup`. Use Study Visibility for route targeting; do not install one script per Study.
+7. If repository installation is requested, inspect only the route and application-shell files needed for the integration, make the smallest change, and verify the widget on the intended desktop and mobile routes.
 
 ### Review and triage results
 
