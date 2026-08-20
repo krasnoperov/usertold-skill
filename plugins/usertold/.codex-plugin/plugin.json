@@ -1,6 +1,6 @@
 {
   "name": "usertold",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Capture in-product interviews and return source-linked evidence for verified product work.",
   "author": {
     "name": "UserTold",
@@ -38,9 +38,9 @@
     "composerIcon": "./assets/usertold-mark.svg",
     "logo": "./assets/usertold-mark.svg",
     "defaultPrompt": [
-      "Review my latest captured interviews and cite the source evidence.",
-      "Turn selected UserTold evidence into a portable research handoff.",
-      "Plan participant recruitment and draft canonical UserTold Study inputs."
+      "Read README and PRD only, create this repo's UserTold project, and propose draft studies for new and experienced users.",
+      "Create and activate two studies: new homepage visitors and experienced users working in a Space. Install the widget.",
+      "Review interviews and source evidence, triage proposed fixes, and create issues only for fixes I approve."
     ]
   }
 }

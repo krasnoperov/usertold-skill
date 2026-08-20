@@ -1,6 +1,6 @@
 ---
 name: usertold
-description: Capture consented in-product interviews and use their source-linked evidence through UserTold MCP or CLI. Use when an agent needs to set up interview capture, inspect voice transcripts, supported desktop screen recordings, observed behavior or page context, review UserTold analysis, prepare verified product work, or export raw and processed research into a portable handoff for UX research, Voice of Customer, insight-tracking, prioritization, issue-writing, or implementation workflows. Do not use for participant recruitment or for claims not grounded in the captured record.
+description: Set up UserTold projects and in-product interview studies, inspect consented research, and turn source-linked findings into verified product work through UserTold MCP or CLI. Use when an agent needs to learn a product before planning interviews, install route-targeted interview capture, inspect voice transcripts, supported desktop screen recordings, observed behavior or page context, triage draft Work with its Evidence, create approved tracker issues, or export a portable research handoff. Do not use for participant recruitment or for claims not grounded in the captured record.
 ---
 
 # UserTold
@@ -20,6 +20,33 @@ Preserve the boundary between source material, observed facts, generated interpr
 
 Read [references/access.md](references/access.md) for concrete MCP resources, tool families, CLI commands, and recovery steps.
 
+## Route short requests
+
+Treat a short request as the desired outcome, not permission to inspect everything. Choose one route and keep discovery proportional.
+
+### Bootstrap a product
+
+1. In a repository, read at most two authoritative product documents by default, such as `README.md` and a PRD or product vision. Do not scan implementation files unless a missing fact blocks the research plan.
+2. Read UserTold organization and project resources before writing. Reuse an existing matching Project; never create a duplicate.
+3. Create one Project when the user asks for setup, then propose the smallest useful set of draft Studies. Do not create or activate the Studies when the request only asks for a plan.
+4. Separate first-time comprehension from experienced workflow research when those audiences face different decisions.
+
+### Configure and install Studies
+
+1. Use `$usertold-recruit-participants` when the request names audiences, invitations, placement, or outreach.
+2. Inspect existing Studies before creating anything. Reuse or update an intended draft instead of duplicating it.
+3. Define one research question and audience per Study, validate every script, then create the Studies as drafts.
+4. Activate only when the user explicitly asks for activation or approves the shown configuration.
+5. Retrieve the install-once snippet from `projects.get_widget_setup`. Use Study Visibility for route targeting; do not install one script per Study.
+6. If repository installation is requested, inspect only the route and application-shell files needed for the integration, make the smallest change, and verify the widget on the intended desktop and mobile routes.
+
+### Review and triage results
+
+1. Read completed interviews, source context, Evidence, and current Work before recommending a fix.
+2. Evidence is commonly already grouped into draft Work. Start from that Work and its supporting Evidence; do not create replacement Work unless the selected Evidence is genuinely unlinked and the user asks for it.
+3. Compare the proposed problem with the current product behavior and code. Keep contradictory or weak Evidence visible.
+4. Ask for approval before marking Work ready or creating an external issue. Push only approved, ready Work to the explicitly selected tracker.
+
 ## Establish scope
 
 Before reading research data, determine:
@@ -36,7 +63,7 @@ Use canonical project references returned by UserTold. Do not reconstruct identi
 
 ### Set up research
 
-1. Inspect the current workspace before creating anything.
+1. Ground the setup in the smallest authoritative product context before creating anything.
 2. Ask what product is being researched, what decision the research should inform, and which existing users can participate.
 3. Draft the project, intake, and study using UserTold's current tools.
 4. Show the draft and the assumptions made.
