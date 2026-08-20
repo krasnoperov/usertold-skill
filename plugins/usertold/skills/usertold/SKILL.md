@@ -39,7 +39,14 @@ Treat a short request as the desired outcome, not permission to inspect everythi
 4. Define one research question and audience per Study, validate every script, then create the Studies as drafts.
 5. Activate only when the user explicitly asks for activation or approves the shown configuration.
 6. Retrieve the install-once snippet from `projects.get_widget_setup`. Use Study Visibility for route targeting; do not install one script per Study.
-7. If repository installation is requested, inspect only the route and application-shell files needed for the integration, make the smallest change, and verify the widget on the intended desktop and mobile routes.
+7. If repository installation is requested, inspect only the route and application-shell files needed for the integration, make the smallest change, and run the repository-native checks that cover the shared document shell and intended routes. Add or update one focused test when the repository requires source-level integration assertions.
+
+For a short request covering new and experienced users, start with two adaptable in-product scenarios:
+
+- **Landing-page comprehension:** target exact `/` with a contextual invitation; ask for the unaided first impression, expected value, likely next action, and strongest uncertainty. Keep it to about 5–10 minutes and do not explain the product during the interview.
+- **Core-workflow reflection:** target the smallest primary authenticated route subtree; ask the participant to walk through a recent real task, then probe friction, workarounds, and consequences. Use page context, visual snapshots, or same-origin navigation only when supported and relevant. Route presence is a coverage proxy, not proof that someone is experienced.
+
+Adapt the product nouns, actions, and routes from the repository. Do not assume every product has a dashboard, workspace, Space, or the same authenticated route structure.
 
 ### Review and triage results
 

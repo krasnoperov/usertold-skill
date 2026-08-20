@@ -1,6 +1,6 @@
 {
   "name": "usertold",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Capture in-product interviews and return source-linked evidence for verified product work.",
   "author": {
     "name": "UserTold",
@@ -38,9 +38,9 @@
     "composerIcon": "./assets/usertold-mark.svg",
     "logo": "./assets/usertold-mark.svg",
     "defaultPrompt": [
-      "Learn this product, create its UserTold project, and propose studies for new and experienced users.",
-      "Create and activate studies for new visitors and experienced users, then install UserTold on the right pages.",
-      "Review interviews and source evidence, triage fixes, and create issues only for fixes I approve."
+      "Learn this product, create its UserTold project, and propose interviews for its landing page and core product workflow.",
+      "Create and activate UserTold studies for new visitors on / and experienced users on core product pages; install the widget.",
+      "Review completed UserTold interviews and Evidence, triage Work, and create tracker issues only after I approve fixes."
     ]
   }
 }
