@@ -52,6 +52,11 @@ test('skill metadata is portable and contains no scaffold placeholders', async (
   assert.match(skill, /read at most two authoritative product documents/);
   assert.match(skill, /never create a duplicate/);
   assert.match(skill, /Use Study Visibility for route targeting; do not install one script per Study/);
+  assert.match(skill, /speak → observe → talk → speak/);
+  assert.match(skill, /talk → speak → observe → talk → speak/);
+  assert.match(skill, /interviewer stays silent/);
+  assert.match(skill, /talk\.research_mode: "usability_debrief"/);
+  assert.match(skill, /experimental_capabilities\.realtime_analysis: true/);
   assert.match(skill, /Evidence is commonly already grouped into draft Work/);
   assert.match(skill, /Push only approved, ready Work/);
   assert.doesNotMatch([skill, ...repoFiles].join('\n'), /\[TODO:/);
@@ -120,7 +125,7 @@ test('OpenAI directory metadata meets the final publication limits', async () =>
   const openaiAgent = await readFile('plugins/usertold/skills/usertold/agents/openai.yaml', 'utf8');
   const npmPackage = await json('package.json');
 
-  assert.equal(npmPackage.version, '0.3.3');
+  assert.equal(npmPackage.version, '0.3.4');
   assert.equal(codex.version, npmPackage.version);
 
   const { interface: pluginInterface } = codex;

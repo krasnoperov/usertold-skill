@@ -48,6 +48,18 @@ For a short request covering new and experienced users, start with two adaptable
 
 Adapt the product nouns, actions, and routes from the repository. Do not assume every product has a dashboard, workspace, Space, or the same authenticated route structure.
 
+### Compose segment modes
+
+Use all three modes deliberately:
+
+- **`speak`** is one-way scripted audio for a welcome, task instruction, transition, or thanks. Keep it short; it is not a conversation or adaptive rescue.
+- **`observe`** gives the participant calm, uninterrupted time to explore the product, complete one real task, gather their thoughts, and think aloud if they choose. The interviewer stays silent: do not coach, rescue, explain, highlight, or navigate for them. Provide a neutral participant-facing `instruction`, useful private `conductor_context`, a `max_duration_s`, and a deterministic completion path such as participant Done, URL, or action.
+- **`talk`** is the adaptive interview. Before observation, use it only when the study needs to understand who the participant is, their recent context, or the task they are bringing. After observation, use it to debrief specific behavior while the experience is fresh.
+
+Choose `talk.research_mode` explicitly: `discovery` for open needs and context, `jtbd_switch` for a recent real occurrence or change, `concept_reaction` for an unaided response to a concept, and `usability_debrief` after a product task. A Talk that debriefs an Observe segment should set `talk.research_mode: "usability_debrief"` and enable `experimental_capabilities.realtime_analysis: true` on that Talk segment so the interviewer receives bounded observed context.
+
+For product exploration, prefer `speak → observe → talk → speak`. When participant context is necessary first, use `talk → speak → observe → talk → speak`: learn about the person and recent task, give a neutral handoff, stay quiet during product use, then debrief what actually happened. Do not replace observation with continuous interviewer narration.
+
 ### Review and triage results
 
 1. Read completed interviews, source context, Evidence, and current Work before recommending a fix.
