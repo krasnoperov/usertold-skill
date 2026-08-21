@@ -1,6 +1,6 @@
 ---
 name: usertold
-description: Capture consented in-product interviews and use their source-linked evidence through UserTold MCP or CLI. Use when an agent needs to set up interview capture, inspect voice transcripts, supported desktop screen recordings, observed behavior or page context, review UserTold analysis, prepare verified product work, or export raw and processed research into a portable handoff for UX research, Voice of Customer, insight-tracking, prioritization, issue-writing, or implementation workflows. Do not use for participant recruitment or for claims not grounded in the captured record.
+description: Set up UserTold projects and in-product interview studies, inspect consented research, and turn source-linked findings into verified product work through UserTold MCP or CLI. Use when an agent needs to learn a product before planning interviews, install route-targeted interview capture, inspect voice transcripts, supported desktop screen recordings, observed behavior or page context, triage draft Work with its Evidence, create approved tracker issues, or export a portable research handoff. Do not use for participant recruitment or for claims not grounded in the captured record.
 ---
 
 # UserTold
@@ -20,6 +20,53 @@ Preserve the boundary between source material, observed facts, generated interpr
 
 Read [references/access.md](references/access.md) for concrete MCP resources, tool families, CLI commands, and recovery steps.
 
+## Route short requests
+
+Treat a short request as the desired outcome, not permission to inspect everything. Choose one route and keep discovery proportional.
+
+### Bootstrap a product
+
+1. In a repository, read at most two authoritative product documents by default, such as `README.md` and a PRD or product vision. Do not scan implementation files unless a missing fact blocks the research plan.
+2. Read UserTold organization and project resources before writing. Reuse an existing matching Project; never create a duplicate.
+3. Create one Project when the user asks for setup, then propose the smallest useful set of draft Studies. Do not create or activate the Studies when the request only asks for a plan.
+4. Separate first-time comprehension from experienced workflow research when those audiences face different decisions.
+
+### Configure and install Studies
+
+1. Use `$usertold-recruit-participants` when the request names audiences, invitations, placement, or outreach.
+2. If the user names audiences but not routes, derive the smallest truthful placement from product documentation and routing: the public entry surface for new visitors and the primary authenticated workflow for experienced users. State any coverage limitation instead of inventing tenure or identity signals.
+3. Inspect existing Studies before creating anything. Reuse or update an intended draft instead of duplicating it.
+4. Define one research question and audience per Study, validate every script, then create the Studies as drafts.
+5. Activate only when the user explicitly asks for activation or approves the shown configuration.
+6. Retrieve the install-once snippet from `projects.get_widget_setup`. Use Study Visibility for route targeting; do not install one script per Study.
+7. If repository installation is requested, inspect only the route and application-shell files needed for the integration, make the smallest change, and run the repository-native checks that cover the shared document shell and intended routes. Add or update one focused test when the repository requires source-level integration assertions.
+
+For a short request covering new and experienced users, start with two adaptable in-product scenarios:
+
+- **Landing-page comprehension:** target exact `/` with a contextual invitation; ask for the unaided first impression, expected value, likely next action, and strongest uncertainty. Keep it to about 5–10 minutes and do not explain the product during the interview.
+- **Core-workflow reflection:** target the smallest primary authenticated route subtree; ask the participant to walk through a recent real task, then probe friction, workarounds, and consequences. Use page context, visual snapshots, or same-origin navigation only when supported and relevant. Route presence is a coverage proxy, not proof that someone is experienced.
+
+Adapt the product nouns, actions, and routes from the repository. Do not assume every product has a dashboard, workspace, Space, or the same authenticated route structure.
+
+### Compose segment modes
+
+Use all three modes deliberately:
+
+- **`speak`** is one-way scripted audio for a welcome, task instruction, transition, or thanks. Keep it short; it is not a conversation or adaptive rescue.
+- **`observe`** gives the participant calm, uninterrupted time to explore the product, complete one real task, gather their thoughts, and think aloud if they choose. The interviewer stays silent: do not coach, rescue, explain, highlight, or navigate for them. Provide a neutral participant-facing `instruction`, useful private `conductor_context`, a `max_duration_s`, and a deterministic completion path such as participant Done, URL, or action.
+- **`talk`** is the adaptive interview. Before observation, use it only when the study needs to understand who the participant is, their recent context, or the task they are bringing. After observation, use it to debrief specific behavior while the experience is fresh.
+
+Choose `talk.research_mode` explicitly: `discovery` for open needs and context, `jtbd_switch` for a recent real occurrence or change, `concept_reaction` for an unaided response to a concept, and `usability_debrief` after a product task. A Talk that debriefs an Observe segment should set `talk.research_mode: "usability_debrief"` and enable `experimental_capabilities.realtime_analysis: true` on that Talk segment so the interviewer receives bounded observed context.
+
+For product exploration, prefer `speak → observe → talk → speak`. When participant context is necessary first, use `talk → speak → observe → talk → speak`: learn about the person and recent task, give a neutral handoff, stay quiet during product use, then debrief what actually happened. Do not replace observation with continuous interviewer narration.
+
+### Review and triage results
+
+1. Read completed interviews, source context, Evidence, and current Work before recommending a fix.
+2. Evidence is commonly already grouped into draft Work. Start from that Work and its supporting Evidence; do not create replacement Work unless the selected Evidence is genuinely unlinked and the user asks for it.
+3. Compare the proposed problem with the current product behavior and code. Keep contradictory or weak Evidence visible.
+4. Ask for approval before marking Work ready or creating an external issue. Push only approved, ready Work to the explicitly selected tracker.
+
 ## Establish scope
 
 Before reading research data, determine:
@@ -36,7 +83,7 @@ Use canonical project references returned by UserTold. Do not reconstruct identi
 
 ### Set up research
 
-1. Inspect the current workspace before creating anything.
+1. Ground the setup in the smallest authoritative product context before creating anything.
 2. Ask what product is being researched, what decision the research should inform, and which existing users can participate.
 3. Draft the project, intake, and study using UserTold's current tools.
 4. Show the draft and the assumptions made.

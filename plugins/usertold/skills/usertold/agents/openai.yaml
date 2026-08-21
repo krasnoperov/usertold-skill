@@ -1,7 +1,7 @@
 interface:
   display_name: "UserTold"
   short_description: "Capture and analyze interviews"
-  default_prompt: "Use $usertold to capture or review in-product interviews and prepare a source-linked research handoff."
+  default_prompt: "Use $usertold to learn this product, create its project, and propose landing-page and core-workflow interviews."
 
 dependencies:
   tools:

@@ -7,6 +7,12 @@ description: Plan participant recruitment for a UserTold Study and produce parti
 
 Turn a research question into a small, truthful recruitment plan for people the team can already reach. Recruitment is distribution into a UserTold Study, not a marketing funnel.
 
+## Scale to the request
+
+For a short in-product setup request, do not automatically expand into a full outreach campaign, reward plan, or Intake. If the user names audiences and routes, preserve those boundaries. If they name audiences but not routes, derive the public entry surface and primary authenticated workflow from the smallest authoritative product context, then state the coverage limitation. Produce only the Invitation, Visibility, and safeguards needed to create the Studies. Inspect the host application only when an exact route is required for installation. Ask only for information that blocks a truthful configuration.
+
+Use the full recruitment packet below when the user asks how to reach, qualify, reward, or invite participants beyond the in-product placement.
+
 ## Establish the participant boundary
 
 1. State the behavior or recent experience that makes someone relevant. Prefer “attempted checkout in the last 30 days” over a persona label.
@@ -58,7 +64,7 @@ Recontact permission is consent, not qualification. Do not put it in `qualificat
 
 The public UserTold MCP surface can create or update Studies with Invitation and Visibility. It does not expose a new recruitment or Intake tool. Produce Intake inputs for the dashboard or published CLI unless the live discovered surface explicitly supports more.
 
-## Produce configuration
+## Produce full recruitment configuration
 
 Return this compact packet:
 

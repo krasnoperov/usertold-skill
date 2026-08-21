@@ -49,6 +49,16 @@ test('skill metadata is portable and contains no scaffold placeholders', async (
   assert.match(skill, /capture interviews with real users/i);
   assert.match(skill, /Screen capture is not available on every browser or mobile device/);
   assert.match(skill, /portable research handoff/);
+  assert.match(skill, /read at most two authoritative product documents/);
+  assert.match(skill, /never create a duplicate/);
+  assert.match(skill, /Use Study Visibility for route targeting; do not install one script per Study/);
+  assert.match(skill, /speak → observe → talk → speak/);
+  assert.match(skill, /talk → speak → observe → talk → speak/);
+  assert.match(skill, /interviewer stays silent/);
+  assert.match(skill, /talk\.research_mode: "usability_debrief"/);
+  assert.match(skill, /experimental_capabilities\.realtime_analysis: true/);
+  assert.match(skill, /Evidence is commonly already grouped into draft Work/);
+  assert.match(skill, /Push only approved, ready Work/);
   assert.doesNotMatch([skill, ...repoFiles].join('\n'), /\[TODO:/);
 });
 
@@ -84,6 +94,7 @@ test('recruitment sibling is concise, canonical, and contains only approved file
   assert.match(skill, /Do not emit an invented combined `intake` schema/);
   assert.match(skill, /Visibility does not encode dates or display frequency/);
   assert.match(skill, /ordinary Intake question writes UserTold's response-level `consent_followup`/);
+  assert.match(skill, /do not automatically expand into a full outreach campaign/);
   assert.match(openai, /default_prompt: "Use \$usertold-recruit-participants/);
 
   const contents = await Promise.all(files.map((path) => readFile(`${root}/${path}`, 'utf8')));
@@ -114,7 +125,7 @@ test('OpenAI directory metadata meets the final publication limits', async () =>
   const openaiAgent = await readFile('plugins/usertold/skills/usertold/agents/openai.yaml', 'utf8');
   const npmPackage = await json('package.json');
 
-  assert.equal(npmPackage.version, '0.3.0');
+  assert.equal(npmPackage.version, '0.3.4');
   assert.equal(codex.version, npmPackage.version);
 
   const { interface: pluginInterface } = codex;
@@ -129,9 +140,9 @@ test('OpenAI directory metadata meets the final publication limits', async () =>
   assert.ok(shortDescription.length <= 30);
 
   const expectedPrompts = [
-    'Review my latest captured interviews and cite the source evidence.',
-    'Turn selected UserTold evidence into a portable research handoff.',
-    'Plan participant recruitment and draft canonical UserTold Study inputs.',
+    'Learn this product, create its UserTold project, and propose interviews for its landing page and core product workflow.',
+    'Create and activate UserTold studies for new visitors on / and experienced users on core product pages; install the widget.',
+    'Review completed UserTold interviews and Evidence, triage Work, and create tracker issues only after I approve fixes.',
   ];
   assert.deepEqual(pluginInterface.defaultPrompt, expectedPrompts);
   assert.ok(pluginInterface.defaultPrompt.length <= 3);
