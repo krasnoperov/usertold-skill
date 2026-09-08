@@ -34,13 +34,12 @@
     "websiteURL": "https://usertold.ai",
     "privacyPolicyURL": "https://usertold.ai/privacy",
     "termsOfServiceURL": "https://usertold.ai/terms",
-    "supportURL": "https://usertold.ai/support",
     "composerIcon": "./assets/usertold-mark.svg",
     "logo": "./assets/usertold-mark.svg",
     "defaultPrompt": [
       "Learn this product, create its UserTold project, and propose interviews for its landing page and core product workflow.",
       "Create and activate UserTold studies for new visitors on / and experienced users on core product pages; install the widget.",
-      "Review completed UserTold interviews and Evidence, triage Work, and create tracker issues only after I approve fixes."
+      "Review completed UserTold interviews and Evidence, triage Findings, and create tracker issues only after I approve fixes."
     ]
   }
 }
