@@ -18,7 +18,7 @@ Options:
   --title <text>          Handoff title
   --raw <file>            Raw transcript, events, notes, or other source file (repeatable)
   --evidence <file>       UserTold Evidence JSON
-  --work <file>           UserTold Work JSON
+  --work <file>           UserTold Findings JSON (v1 compatibility option)
   --generated-at <iso>    Fixed generation time for reproducible output
   --force                 Overwrite builder-owned files in a non-empty destination
   --help                  Show this help`);
@@ -160,10 +160,10 @@ if (existing.length > 0 && !args.force) fail(`destination is not empty: ${out}; 
 
 for (const raw of args.raw) await assertRegularFile(raw, 'raw input');
 if (args.evidence) await assertRegularFile(args.evidence, 'Evidence input');
-if (args.work) await assertRegularFile(args.work, 'Work input');
+if (args.work) await assertRegularFile(args.work, 'Findings input');
 
 const evidence = args.evidence ? await readJson(args.evidence, 'Evidence') : null;
-const work = args.work ? await readJson(args.work, 'Work') : null;
+const work = args.work ? await readJson(args.work, 'Findings') : null;
 const evidenceItems = evidence ? collection(evidence, ['evidence', 'signals', 'items', 'data', 'signal']) : [];
 const workItems = work ? collection(work, ['work', 'tasks', 'items', 'data', 'task']) : [];
 
@@ -232,7 +232,7 @@ ${table([
   ['Review state', 'state'],
 ], evidenceRows(evidenceItems))}
 
-## Work index
+## Finding index
 
 ${table([
   ['ID', 'id'],
@@ -248,7 +248,7 @@ ${table([
 - Preserve supporting and contradictory evidence, uncertainty, dismissal state, and capture gaps.
 - Do not generalize from one interview without stating the sample limitation.
 - Do not expose participant contact details when a pseudonym or source ID is sufficient.
-- Treat Work as a review packet, not an implementation order; verify current product context before routing it.
+- Treat each Finding as a review packet, not an implementation order; verify current product context before routing it.
 `;
 await writeFile(resolve(out, 'research-handoff.md'), document);
 

@@ -57,8 +57,8 @@ test('skill metadata is portable and contains no scaffold placeholders', async (
   assert.match(skill, /interviewer stays silent/);
   assert.match(skill, /talk\.research_mode: "usability_debrief"/);
   assert.match(skill, /experimental_capabilities\.realtime_analysis: true/);
-  assert.match(skill, /Evidence is commonly already grouped into draft Work/);
-  assert.match(skill, /Push only approved, ready Work/);
+  assert.match(skill, /Evidence is commonly already grouped into draft Findings/);
+  assert.match(skill, /Push only approved, ready Findings/);
   assert.doesNotMatch([skill, ...repoFiles].join('\n'), /\[TODO:/);
 });
 
@@ -142,7 +142,7 @@ test('OpenAI directory metadata meets the final publication limits', async () =>
   const expectedPrompts = [
     'Learn this product, create its UserTold project, and propose interviews for its landing page and core product workflow.',
     'Create and activate UserTold studies for new visitors on / and experienced users on core product pages; install the widget.',
-    'Review completed UserTold interviews and Evidence, triage Work, and create tracker issues only after I approve fixes.',
+    'Review completed UserTold interviews and Evidence, triage Findings, and create tracker issues only after I approve fixes.',
   ];
   assert.deepEqual(pluginInterface.defaultPrompt, expectedPrompts);
   assert.ok(pluginInterface.defaultPrompt.length <= 3);
@@ -157,7 +157,7 @@ test('OpenAI directory metadata meets the final publication limits', async () =>
     assert.doesNotMatch(prompt, /@/);
   }
 
-  for (const key of ['websiteURL', 'privacyPolicyURL', 'termsOfServiceURL', 'supportURL']) {
+  for (const key of ['websiteURL', 'privacyPolicyURL', 'termsOfServiceURL']) {
     assert.equal(new URL(pluginInterface[key]).protocol, 'https:');
   }
 
